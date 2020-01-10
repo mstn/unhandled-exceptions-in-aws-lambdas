@@ -1,0 +1,51 @@
+service: examples
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-1
+  memorySize: 256
+
+functions:
+  fun1:
+    handler: src/fun1.handler
+    description: unhandled exception with try-catch
+    events:
+      - http: 
+          method: get 
+          path: functions/1
+  fun2:
+    handler: src/fun2.handler
+    description: unhandled exception without try-catch
+    events:
+      - http: 
+          method: get 
+          path: functions/2
+  fun3:
+    handler: src/fun3.handler
+    description: like fun1 but store return value of async function
+    events:
+      - http: 
+          method: get 
+          path: functions/3     
+  fun4:
+    handler: src/fun4.handler
+    description: throw user defined exception
+    events:
+      - http: 
+          method: get 
+          path: functions/4
+  fun5:
+    handler: src/fun5.handler
+    description: throw user defined exception/store return value
+    events:
+      - http: 
+          method: get 
+          path: functions/5  
+  fun6:
+    handler: src/fun6.handler
+    description: hack
+    events:
+      - http: 
+          method: get 
+          path: functions/6       
