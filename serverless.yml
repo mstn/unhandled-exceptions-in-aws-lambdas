@@ -49,3 +49,11 @@ functions:
       - http: 
           method: get 
           path: functions/6       
+  fun7:
+    handler: src/fun7.handler
+    description: timeout
+    timeout: 1 # sec
+    events:
+      - http: 
+          method: get 
+          path: functions/7  

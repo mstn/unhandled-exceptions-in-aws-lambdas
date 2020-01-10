@@ -1,8 +1,7 @@
-const throwUnhandledException = async () => {
-  const o = undefined;
-  // throw TypeError
-  o.someProperty;
-  return 'ok';
+const throwTimeoutException = () => {
+  return new Promise( resolve => {
+    setTimeout(() => resolve('OK'), 5000);
+  })
 }
 
 // from https://stackoverflow.com/a/51876360
@@ -17,14 +16,14 @@ function getErrorObject(data) {
   
 const handler = async () => {
   try {
-    const result = await throwUnhandledException();
+    const result = await throwTimeoutException();
     console.log('result %j', result);
     return {
       statusCode: 200,
       body: 'OK'
     };
   } catch (e) {
-    console.log('[FUN 6] ERROR %j', getErrorObject(e));
+    console.log('[FUN 7] ERROR %j', getErrorObject(e));
     return {
       statusCode: 500,
       body: JSON.stringify(getErrorObject(e))
